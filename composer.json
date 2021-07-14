@@ -29,7 +29,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Wtone\\Captcha\\": "src/"
+			"Nuary\\Captcha\\": "src/"
 		},
 		"files": [
 			"src/helpers.php"
@@ -40,7 +40,7 @@
 			"tests"
 		],
 		"psr-4": {
-			"Wtone\\Test\\": "tests/"
+			"Nuary\\Test\\": "tests/"
 		}
 	},
 	"minimum-stability": "stable",
