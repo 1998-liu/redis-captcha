@@ -1,0 +1,57 @@
+{
+	"name": "lh/redis-captcha",
+	"type": "package",
+	"description": "Laravel 5 & 6 & lumen 6 Captcha Package",
+	"keywords": ["Lumen6 laravel6 Captcha", "laravel6 Security", "laravel6 Captcha", "laravel5 Security", "Captcha"],
+	"homepage": "https://github.com/1998-liu/redis-captcha",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Lh",
+			"email": "2376038291@qq.com",
+			"homepage": "",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": "^7.2",
+		"ext-gd": "*",
+		"illuminate/config": "~5.0|^6.0",
+		"illuminate/filesystem": "~5.0|^6.0",
+		"illuminate/support": "~5.0|^6.0",
+		"illuminate/hashing": "~5.0|^6.0",
+		"illuminate/session": "~5.0|^6.0",
+		"intervention/image": "~2.5"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^8.0",
+		"mockery/mockery": "^1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Wtone\\Captcha\\": "src/"
+		},
+		"files": [
+			"src/helpers.php"
+		]
+	},
+	"autoload-dev": {
+		"classmap": [
+			"tests"
+		],
+		"psr-4": {
+			"Wtone\\Test\\": "tests/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Lh\\Captcha\\CaptchaServiceProvider"
+			],
+			"aliases": {
+				"Captcha": "Lh\\Captcha\\Facades\\Captcha"
+			}
+		}
+	}
+}
