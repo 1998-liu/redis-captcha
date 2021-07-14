@@ -320,12 +320,10 @@ class Captcha
         }
        
         $hash = $this->hasher->make($key);
-        Redis::setex('captcha', 1200, json_encode([
+        Redis::setex('captcha', 120, json_encode([
             'sensitive' => $this->sensitive,
             'key' => $hash
         ]));
-        //$str = implode($bag);
-        //Redis::setex('captcha', 120, $str);
 
         return [
             'value' => $bag,
