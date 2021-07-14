@@ -1,6 +1,6 @@
 # Captcha for Laravel 5 & 6 & Lumen 6
 
-A simple Lumen service provider for including the [Captcha for Laravel](https://github.com/mewebstudio/captcha).
+A simple Lumen service provider for including the [Captcha for Laravel](https://github.com/1998-liu/redis-captcha).
 
 for Lumen 6
 
@@ -16,7 +16,7 @@ project's `composer.json`.
 ```json
 {
     "require": {
-        "wtone/lumen-captcha": "~2.0"
+        "nuary/redis-captcha": "^1.0"
     },
     "minimum-stability": "dev"
 }
@@ -26,7 +26,7 @@ or
 
 Require this package with composer:
 ```
-composer require wtone/lumen-captcha
+composer require nuary/redis-captcha
 ```
 
 Update your packages with ```composer update``` or install with ```composer install```.
@@ -62,13 +62,13 @@ in `bootstrap/app.php`.
 ```php
     // regiseter Provider
     $app->register(Illuminate\Session\SessionServiceProvider::class);
-    $app->register(Wtone\Captcha\CaptchaServiceProvider::class);
+    $app->register(Nuary\Captcha\CaptchaServiceProvider::class);
     // load config
     $app->configure('session');
     $app->configure('captcha');
     // set alias
     $app->alias('session', 'Illuminate\Session\SessionManager');
-    $app->alias('Captcha', Wtone\Captcha\Facades\Captcha::class);
+    $app->alias('Captcha', Nuary\Captcha\Facades\Captcha::class);
 ```
 ### make sure create folder "storage/framework/session" and chmod it
 
