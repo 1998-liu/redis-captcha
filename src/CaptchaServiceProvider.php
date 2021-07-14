@@ -23,8 +23,8 @@ class CaptchaServiceProvider extends ServiceProvider
         if (strpos($this->app->version(), 'Lumen') !== false) {
             /* @var Router $router */
             $router = $this->app['router'];
-            $router->get('captcha/api[/{config}]', 'Lh\Captcha\LumenCaptchaController@getCaptchaApi');
-            $router->get('captcha[/{config}]', 'Lh\Captcha\LumenCaptchaController@getCaptcha');
+            $router->get('captcha/api[/{config}]', 'Nuary\Captcha\LumenCaptchaController@getCaptchaApi');
+            $router->get('captcha[/{config}]', 'Nuary\Captcha\LumenCaptchaController@getCaptcha');
         } else {
             // Publish configuration files
             $this->publishes([
@@ -34,11 +34,11 @@ class CaptchaServiceProvider extends ServiceProvider
             /* @var Router $router */
             $router = $this->app['router'];
             if ((double)$this->app->version() >= 5.2) {
-                $router->get('captcha/api/{config?}', '\Lh\Captcha\CaptchaController@getCaptchaApi')->middleware('web');
-                $router->get('captcha/{config?}', '\Lh\Captcha\CaptchaController@getCaptcha')->middleware('web');
+                $router->get('captcha/api/{config?}', '\Nuary\Captcha\CaptchaController@getCaptchaApi')->middleware('web');
+                $router->get('captcha/{config?}', '\Nuary\Captcha\CaptchaController@getCaptcha')->middleware('web');
             } else {
-                $router->get('captcha/api/{config?}', '\Lh\Captcha\CaptchaController@getCaptchaApi');
-                $router->get('captcha/{config?}', '\Lh\Captcha\CaptchaController@getCaptcha');
+                $router->get('captcha/api/{config?}', '\Nuary\Captcha\CaptchaController@getCaptchaApi');
+                $router->get('captcha/{config?}', '\Nuary\Captcha\CaptchaController@getCaptcha');
             }
         }
 
