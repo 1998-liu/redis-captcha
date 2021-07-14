@@ -1,6 +1,6 @@
 <?php
 
-namespace Lh\Captcha;
+namespace Nuary\Captcha;
 
 /**
  * Laravel 5 & 6 Captcha package
@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Redis;
 
 /**
  * Class Captcha
- * @package Wtone\Captcha
+ * @package Nuary\Captcha
  */
 class Captcha
 {

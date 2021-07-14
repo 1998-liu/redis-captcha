@@ -1,6 +1,6 @@
 <?php
 
-namespace Lh\Captcha;
+namespace Nuary\Captcha;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
@@ -8,7 +8,7 @@ use Illuminate\Validation\Factory;
 
 /**
  * Class CaptchaServiceProvider
- * @package Lh\Captcha
+ * @package Nuary\Captcha
  */
 class CaptchaServiceProvider extends ServiceProvider
 {

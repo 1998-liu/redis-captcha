@@ -1,5 +1,5 @@
 {
-	"name": "lh/redis-captcha",
+	"name": "nuary/redis-captcha",
 	"type": "package",
 	"description": "Laravel 5 & 6 & lumen 6 Captcha Package",
 	"keywords": ["Lumen6 laravel6 Captcha", "laravel6 Security", "laravel6 Captcha", "laravel5 Security", "Captcha"],
@@ -47,10 +47,10 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Lh\\Captcha\\CaptchaServiceProvider"
+				"Nuary\\Captcha\\CaptchaServiceProvider"
 			],
 			"aliases": {
-				"Captcha": "Lh\\Captcha\\Facades\\Captcha"
+				"Captcha": "Nuary\\Captcha\\Facades\\Captcha"
 			}
 		}
 	}

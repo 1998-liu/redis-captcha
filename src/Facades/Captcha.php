@@ -1,11 +1,11 @@
 <?php
 
-namespace Lh\Captcha\Facades;
+namespace Nuary\Captcha\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Lh\Redis-Captcha
+ * @see \Nuary\Redis-Captcha
  */
 class Captcha extends Facade
 {

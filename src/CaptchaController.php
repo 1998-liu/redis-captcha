@@ -1,13 +1,13 @@
 <?php
 
-namespace Lh\Captcha;
+namespace Nuary\Captcha;
 
 use Exception;
 use Illuminate\Routing\Controller;
 
 /**
  * Class CaptchaController
- * @package Lh\Captcha
+ * @package Nuary\Captcha
  */
 class CaptchaController extends Controller
 {

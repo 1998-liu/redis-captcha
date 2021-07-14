@@ -1,13 +1,13 @@
 <?php
 
-namespace Lh\Captcha;
+namespace Nuary\Captcha;
 
 use Exception;
 use Laravel\Lumen\Routing\Controller;
 
 /**
  * Class CaptchaController
- * @package Lh\Captcha
+ * @package Nuary\Captcha
  */
 class LumenCaptchaController extends Controller
 {
