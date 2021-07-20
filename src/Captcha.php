@@ -218,12 +218,13 @@ class Captcha
     /**
      * Create captcha image
      *
+     * @param int $time
      * @param string $config
      * @param bool $api
      * @return array|mixed
      * @throws Exception
      */
-    public function create(string $config = 'default', bool $api = false)
+    public function create(int $time = 120, string $config = 'default', bool $api = false)
     {
         $this->backgrounds = $this->files->files(__DIR__ . '/../assets/backgrounds');
         $this->fonts = $this->files->files($this->fontsDirectory);
@@ -239,7 +240,7 @@ class Captcha
 
         $this->configure($config);
 
-        $generator = $this->generate();
+        $generator = $this->generate($time);
         $this->text = $generator['value'];
 
         $this->canvas = $this->imageManager->canvas(
@@ -280,7 +281,10 @@ class Captcha
             'sensitive' => $generator['sensitive'],
             'key' => $generator['key'],
             'img' => $this->image->encode('data-url')->encoded
-        ] : $this->image->response('png', $this->quality);
+        ] : [
+            'unique_key' => $generator['unique_key'],
+            'response' => $this->image->response('png', $this->quality)
+        ];
     }
 
     /**
@@ -294,12 +298,23 @@ class Captcha
     }
 
     /**
+     * unique redis key
+     *
+     * @return string
+     */
+    private function generateKey(): string
+    {
+        return md5(uniqid());
+    }
+
+    /**
      * Generate captcha text
      *
+     * @param int $time
      * @return array
      * @throws Exception
      */
-    protected function generate(): array
+    protected function generate(int $time): array
     {
         $characters = is_string($this->characters) ? str_split($this->characters) : $this->characters;
 
@@ -320,7 +335,8 @@ class Captcha
         }
        
         $hash = $this->hasher->make($key);
-        Redis::setex('captcha', 120, json_encode([
+        $unique_key = $this->generateKey();
+        Redis::setex($unique_key, $time, json_encode([
             'sensitive' => $this->sensitive,
             'key' => $hash
         ]));
@@ -328,7 +344,8 @@ class Captcha
         return [
             'value' => $bag,
             'sensitive' => $this->sensitive,
-            'key' => $hash
+            'key' => $hash,
+            'unique_key' => $unique_key
         ];
     }
 
@@ -434,11 +451,12 @@ class Captcha
      * Captcha check
      *
      * @param string $value
+     * @param string $unique_key
      * @return bool
      */
-    public function check(string $value): bool
+    public function check(string $value, string $unique_key): bool
     {
-        $redis_data = Redis::get('captcha');
+        $redis_data = Redis::get($unique_key);
         if($redis_data == null){
             return false;
         }
@@ -451,8 +469,8 @@ class Captcha
         }
 
         $check = $this->hasher->check($value, $key);
-        if ($check) {
-            Redis::del('captcha');
+        if($check){
+            Redis::del($unique_key);
         }
 
         return $check;
